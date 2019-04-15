@@ -2,7 +2,21 @@ import React, { Component } from 'react';
 import logo from './donpez.png';
 import './App.css';
 
+import {ItemPad} from './components/ItemPad/ItemPad';
+import {TotalBox} from './components/TotalBox/TotalBox';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [
+        {name: 'Pescado', price: 22},
+        {name: 'Camarón', price: 26},
+        {name: 'Bebidas', price: 12}
+      ]
+    }
+  }
+
   render() {
     let fecha = new Date();
     let hora = fecha.getHours();
@@ -13,40 +27,16 @@ class App extends Component {
 
     return (
       <div className="App">
-      <div class="flex-container">
-        <div class="main-pad">
-          <div class="item-pad">
-            <h2>Pescado</h2>
-            <input class="cantidad" placeholder="Cantidad" value="2"></input>
-            <button class="remove-taco" type="button" name="remove">-</button>
-            <button class="add-taco" type="button" name="add">+</button>
+        <div className="flex-container">
+          <div className="main-pad">
+            {this.state.items.map(item => {
+              return <ItemPad item={item.name} />
+            })}
           </div>
-          <div class="item-pad">
-            <h2>Camaron</h2>
-            <input class="cantidad" placeholder="Cantidad" value="2"></input>
-            <button class="remove-taco" type="button" name="remove">-</button>
-            <button class="add-taco" type="button" name="add">+</button>
-          </div>
-          <div class="item-pad">
-            <h2>Refrescos</h2>
-            <input class="cantidad" placeholder="Cantidad" value="2"></input>
-            <button class="remove-taco" type="button" name="remove">-</button>
-            <button class="add-taco" type="button" name="add">+</button>
+          <div className="main-pad">
+            <TotalBox />
           </div>
         </div>
-        <div class="main-pad">
-          <div class="total">
-            <h2>TOTAL A PAGAR</h2>
-            <h1>$120</h1>
-            <h2>Entrega</h2>
-            <input class="entrega" placeholder="$0"></input>
-            <h2>Cambio</h2>
-            <h1>$80</h1>
-            <button class="total-button">Borrar</button>
-            <button class="total-button">Cobrar</button>
-          </div>
-        </div>
-      </div>
       </div>
     );
   }
