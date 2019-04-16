@@ -17,6 +17,7 @@ class App extends Component {
     }
 
     this.updateQuantity = this.updateQuantity.bind(this);
+    this.changeQuantity = this.changeQuantity.bind(this);
   }
 
   calculateTotal() {
@@ -43,6 +44,18 @@ class App extends Component {
     this.setState({items: items });
   }
 
+  changeQuantity(index, value) {
+    let items = this.state.items;
+
+    if (value >= 0) {
+      items[index].quantity = value;
+    } else {
+      items[index].quantity = 0;
+    }
+
+    this.setState({items: items});
+  }
+
   render() {
     let fecha = new Date();
     let hora = fecha.getHours();
@@ -56,7 +69,7 @@ class App extends Component {
         <div className="flex-container">
           <div className="main-pad">
             {this.state.items.map(item => {
-              return <ItemPad item={item} update={this.updateQuantity} />
+              return <ItemPad key={item.index} item={item} update={this.updateQuantity} changeQuantity={this.changeQuantity} />
             })}
           </div>
           <div className="main-pad">
