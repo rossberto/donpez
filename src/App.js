@@ -18,6 +18,7 @@ class App extends Component {
 
     this.updateQuantity = this.updateQuantity.bind(this);
     this.changeQuantity = this.changeQuantity.bind(this);
+    this.handlePurchase = this.handlePurchase.bind(this);
   }
 
   calculateTotal() {
@@ -56,6 +57,15 @@ class App extends Component {
     this.setState({items: items});
   }
 
+  handlePurchase() {
+    // Send purchase info to backend
+    // Give an advice to seller
+    // Clear state
+    this.state.items.map(item => {
+      this.changeQuantity(item.index, 0);
+    });
+  }
+
   render() {
     let fecha = new Date();
     let hora = fecha.getHours();
@@ -73,7 +83,7 @@ class App extends Component {
             })}
           </div>
           <div className="main-pad">
-            <TotalBox total={this.calculateTotal()} />
+            <TotalBox total={this.calculateTotal()} purchase={this.handlePurchase} />
           </div>
         </div>
       </div>

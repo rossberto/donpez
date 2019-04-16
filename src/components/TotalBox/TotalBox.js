@@ -9,6 +9,7 @@ export class TotalBox extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handlePurchase = this.handlePurchase.bind(this);
   }
 
   handleChange(e) {
@@ -42,6 +43,11 @@ export class TotalBox extends React.Component {
     this.setState({payment: 0});
   }
 
+  handlePurchase() {
+    this.props.purchase();
+    this.handleReset();
+  }
+
   render() {
     return (
       <div className="total">
@@ -52,7 +58,7 @@ export class TotalBox extends React.Component {
         <h2>Cambio</h2>
         <h1 id={this.checkPositive()}>${this.calculateChange()}</h1>
         <button onClick={this.handleReset} className="total-button">Borrar</button>
-        <button className="total-button">Cobrar</button>
+        <button onClick={this.handlePurchase} className="total-button">Cobrar</button>
       </div>
     );
   }
