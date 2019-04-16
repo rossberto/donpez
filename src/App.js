@@ -10,11 +10,37 @@ class App extends Component {
     super(props);
     this.state = {
       items: [
-        {name: 'Pescado', price: 22},
-        {name: 'Camarón', price: 26},
-        {name: 'Bebidas', price: 12}
+        {index:0, name: 'Pescado', price: 22, quantity: 0},
+        {index:1, name: 'Camarón', price: 26, quantity: 0},
+        {index:2, name: 'Bebidas', price: 12, quantity: 0}
       ]
     }
+
+    this.updateQuantity = this.updateQuantity.bind(this);
+  }
+
+  calculateTotal() {
+    const costByItem = this.state.items.map(item => {
+      return item.price * item.quantity;
+    });
+
+    return `${costByItem.reduce( (acc, val) => acc + val )}`;
+  }
+
+  updateQuantity(index, type) {
+    let quantity = this.state.items[index].quantity;
+
+    if (type === '+') {
+      quantity++;
+    } else if (type === '-') {
+      if (quantity > 0) {
+        quantity--;
+      }
+    }
+
+    let items = this.state.items;
+    items[index].quantity = quantity;
+    this.setState({items: items });
   }
 
   render() {
@@ -30,11 +56,11 @@ class App extends Component {
         <div className="flex-container">
           <div className="main-pad">
             {this.state.items.map(item => {
-              return <ItemPad item={item.name} />
+              return <ItemPad item={item} update={this.updateQuantity} />
             })}
           </div>
           <div className="main-pad">
-            <TotalBox />
+            <TotalBox total={this.calculateTotal()} />
           </div>
         </div>
       </div>
