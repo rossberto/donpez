@@ -3,6 +3,12 @@ body {
   color: white;
 }
 
+.nav-button {
+  background-color: black;
+  color: white;
+  font-size: 36px;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;

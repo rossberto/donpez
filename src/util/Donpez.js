@@ -27,5 +27,9 @@ export const Donpez = {
     }).then(jsonResponse => {
       return jsonResponse;
     });
+  },
+
+  sales() {
+    console.log('Se piden ventas');
   }
 }
