@@ -5,6 +5,8 @@ import './App.css';
 import {ItemPad} from './components/ItemPad/ItemPad';
 import {TotalBox} from './components/TotalBox/TotalBox';
 
+import {Donpez} from './util/Donpez';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,8 @@ class App extends Component {
         {index:0, name: 'Pescado', price: 22, quantity: 0},
         {index:1, name: 'Camarón', price: 26, quantity: 0},
         {index:2, name: 'Bebidas', price: 12, quantity: 0}
-      ]
+      ],
+      cashier: 'Cajero 0'
     }
 
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -58,22 +61,17 @@ class App extends Component {
   }
 
   handlePurchase() {
-    // Send purchase info to backend
-    // Give an advice to seller
-    // Clear state
-    this.state.items.map(item => {
-      this.changeQuantity(item.index, 0);
+    const date = new Date();
+    Donpez.purchase(date, this.state).then(jsonResponse => {
+      alert(`Compra completada con ID: ${jsonResponse.purchase.id}`);
+
+      this.state.items.map(item => {
+        this.changeQuantity(item.index, 0);
+      });
     });
   }
 
   render() {
-    let fecha = new Date();
-    let hora = fecha.getHours();
-    let minutos = fecha.getMinutes();
-    if (minutos<10) {
-      minutos = '0' + minutos;
-    }
-
     return (
       <div className="App">
         <div className="flex-container">
