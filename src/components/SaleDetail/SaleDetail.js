@@ -4,13 +4,13 @@ export class SaleDetail extends React.Component {
   render() {
     return (
       <div className="sale-detail">
-        <h3>ID: 1 <a href="#">-</a></h3>
+        <h3>ID: {this.props.details.id} <a href="#">-</a></h3>
         <h3>Hora: 10:30 AM</h3>
-        <h3>Cajero: Juan</h3>
-        <h3>Tacos de pescado: 2</h3>
-        <h3>Tacos de camaron: 1</h3>
-        <h3>Bebidas: 2</h3>
-        <h3>Total pagado: $120</h3>
+        <h3>Cajero: {this.props.details.cashier}</h3>
+        <h3>Tacos de pescado: {this.props.details.tacos_pescado}</h3>
+        <h3>Tacos de camaron: {this.props.details.tacos_camaron}</h3>
+        <h3>Bebidas: {this.props.details.bebidas}</h3>
+        <h3>Total pagado: {this.props.details.total}</h3>
       </div>
     );
   }
