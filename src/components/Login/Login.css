@@ -1,0 +1,26 @@
+.login-div {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  width: 400px;
+  align-items: center;
+  background-color: white;
+  color: black;
+  font-size: 36px;
+}
+
+input {
+  text-align: center;
+  margin-left: 4px;
+  width: 390px;
+  font-size: 36px;
+  background-color: black;
+  color: white;
+}
+
+.submit-button {
+  background-color: white;
+  color: black;
+}

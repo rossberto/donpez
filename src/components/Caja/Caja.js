@@ -29,7 +29,6 @@ export class Caja extends React.Component {
     });
 
     const total = costByItem.reduce( (acc, val) => acc + val );
-    //this.setState({total: total});
 
     return `${total}`;
   }
@@ -65,7 +64,7 @@ export class Caja extends React.Component {
   handlePurchase() {
     const date = new Date();
     Donpez.purchase(date, this.state, this.calculateTotal()).then(jsonResponse => {
-      alert(`Compra completada con ID: ${jsonResponse.purchase.id}`);
+      window.print();
 
       this.state.items.map(item => {
         this.changeQuantity(item.index, 0);
@@ -82,7 +81,7 @@ export class Caja extends React.Component {
           })}
         </div>
         <div className="main-pad">
-          <TotalBox total={this.calculateTotal()} purchase={this.handlePurchase} />
+          <TotalBox id="print-receipt" total={this.calculateTotal()} purchase={this.handlePurchase} />
         </div>
       </div>
     );

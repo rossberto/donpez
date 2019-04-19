@@ -121,3 +121,18 @@ nav {
     font-size: 36px;
   }
 }
+
+/* Add animation (fade in the popup) */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-receipt, #print-receipt * {
+    visibility: visible;
+  }
+  #print-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

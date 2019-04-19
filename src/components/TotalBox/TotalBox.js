@@ -50,7 +50,7 @@ export class TotalBox extends React.Component {
 
   render() {
     return (
-      <div className="total">
+      <div id={this.props.id} className="total">
         <h2>TOTAL A PAGAR</h2>
         <h1>${this.props.total}</h1>
         <h2>Entrega</h2>

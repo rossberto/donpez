@@ -1,6 +1,29 @@
 const urlBase = "http://localhost:4001/api/";
 
 export const Donpez = {
+  login(user, password) {
+    const urlToFetch = urlBase + 'login/';
+
+    const headerToFetch = {
+      method: 'POST',
+      headers: {
+        Authorization: user + '&' + password
+      }
+    }
+
+    return fetch(urlToFetch, headerToFetch).then(response => {
+      if (response.ok) {
+        console.log(response.ok);
+        return response.json();
+      }
+    }).then(jsonResponse => {
+      if (jsonResponse) {
+        console.log(jsonResponse);
+        return jsonResponse;
+      }
+    });
+  },
+
   purchase(date, state, total) {
     const bodyToFetch = JSON.stringify({
       purchase: {
@@ -24,9 +47,15 @@ export const Donpez = {
     const urlToFetch = urlBase + 'purchase/';
 
     return fetch(urlToFetch, headers).then(response => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        return null;
+      }
     }).then(jsonResponse => {
-      return jsonResponse;
+      if (jsonResponse) {
+        return jsonResponse;
+      }
     });
   },
 
