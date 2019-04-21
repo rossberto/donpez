@@ -22,6 +22,7 @@ export class Historial extends React.Component {
     };
 
     this.handleButton = this.handleButton.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   getTotals(sales) {
@@ -51,8 +52,6 @@ export class Historial extends React.Component {
   }
 
   handleButton(e) {
-    // se piden datos nuevos al backend
-    // then se calculan totales del display
     Donpez.sales(this.props.token).then(sales => {
       const totalSale = this.getTotals(sales);
       const date = new Date();
@@ -71,6 +70,14 @@ export class Historial extends React.Component {
     } else {
       return this.state.total_sale.total / this.state.sales.length;
     }
+  }
+
+  handleDelete(id) {
+    Donpez.deletePurchase(this.props.token, id).then(ok => {
+      if (ok) {
+        this.handleButton();
+      }
+    });
   }
 
   render() {
@@ -96,7 +103,7 @@ export class Historial extends React.Component {
           </div>
           <div className="today-sales">
             {this.state.sales.map(sale => {
-              return <SaleDetail key={sale.id} details={sale} />;
+              return <SaleDetail key={sale.id} details={sale} delete={this.handleDelete} />;
             })}
           </div>
         </div>

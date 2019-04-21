@@ -130,5 +130,20 @@ export const Donpez = {
     }).then(jsonResponse => {
       return jsonResponse.sales;
     });
+  },
+
+  deletePurchase(token, id) {
+    const urlToFetch = urlBase + 'purchase/' + id;
+    const headerToFetch = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    return fetch(urlToFetch, headerToFetch).then(response => {
+      return response.ok;
+    });
   }
 }
