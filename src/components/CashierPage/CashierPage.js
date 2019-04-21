@@ -19,7 +19,7 @@ export class CashierPage extends React.Component {
         <nav>
           <button onClick={this.handleLogout} className="nav-button" type="button" name="salir">Salir</button>
         </nav>
-        <Caja token={this.props.token} user-type="Cajero" />
+        <Caja cashier={this.props.cashier} token={this.props.token} user-type="Cajero" />
       </div>
     );
   }

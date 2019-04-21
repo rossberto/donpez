@@ -81,7 +81,6 @@ export const Donpez = {
       }
     }).then(jsonResponse => {
       if (jsonResponse) {
-        console.log(jsonResponse);
         return jsonResponse;
       }
     });

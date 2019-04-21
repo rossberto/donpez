@@ -12,6 +12,7 @@ class App extends Component {
 
     this.state = {
       token: '',
+      cashier: '',
       userType: ''
     }
 
@@ -19,10 +20,11 @@ class App extends Component {
     this.authorize = this.authorize.bind(this);
   }
 
-  authorize(auth) {
+  authorize(auth, user) {
     console.log(auth);
     this.setState({
       token: auth.token,
+      cashier: user,
       userType: auth.access_type
     });
   }
@@ -36,9 +38,9 @@ class App extends Component {
 
   setPage() {
     if (this.state.userType === 'Administrador') {
-      return <AdminPage token={this.state.token} logout={this.handleLogout} />;
+      return <AdminPage cashier={this.state.cashier} token={this.state.token} logout={this.handleLogout} />;
     } else if (this.state.userType === 'Cajero') {
-      return <CashierPage token={this.state.token} logout={this.handleLogout} />;
+      return <CashierPage cashier={this.state.cashier} token={this.state.token} logout={this.handleLogout} />;
     } else if (this.state.userType === '') {
       return <Login authorize={this.authorize} />;
     }
@@ -47,7 +49,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>{this.state.token}</p>
         {this.setPage()}
       </div>
     );

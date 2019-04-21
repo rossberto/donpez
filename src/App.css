@@ -103,8 +103,55 @@ nav {
   text-align: left;
 }
 
+.receipt-header {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.receipt-img {
+  height: 100px;
+}
+
+.receipt-table {
+  margin: 0 auto;
+  text-align: right;
+}
+
+.receipt-item {
+  text-align: left;
+}
+
+.receipt-quantity {
+  text-align: center;
+}
+
+.receipt-total {
+  font-weight: bold;
+}
+
+.receipt-factura {
+  text-align: center;
+  margin: auto auto;
+  width: 180px;
+}
+
+.bold-span {
+  font-weight: bold;
+}
+
 #active {
   color: red;
+}
+
+#receipt {
+  visibility: hidden;
+  color: black;
+  margin: 0 auto;
+  font-size: 8px;
+  width: 300px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -127,10 +174,10 @@ nav {
   body * {
     visibility: hidden;
   }
-  #print-receipt, #print-receipt * {
+  #receipt, #receipt * {
     visibility: visible;
   }
-  #print-receipt {
+  #receipt {
     position: absolute;
     left: 0;
     top: 0;

@@ -28,7 +28,7 @@ export class AdminPage extends React.Component {
     const view = this.state.view;
     switch (view) {
       case 'caja':
-        return <Caja user-type="Administrador" />;
+        return <Caja cashier={this.props.cashier} token={this.props.token} user-type="Administrador" />;
         break;
       case 'historial':
         return <Historial />;

@@ -28,8 +28,7 @@ export class Login extends React.Component {
 
     Donpez.login(this.state.user, this.state.password).then(auth => {
       if (auth) {
-        console.log(auth);
-        this.props.authorize(auth);
+        this.props.authorize(auth, this.state.user);
       } else {
         alert("Usuario o contraseña incorrecto.");
         this.setState({

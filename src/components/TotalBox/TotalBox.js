@@ -14,7 +14,8 @@ export class TotalBox extends React.Component {
 
   handleChange(e) {
     const payment = e.target.value;
-    this.setState({payment: payment})
+    this.setState({payment: payment});
+    this.props.payment(payment);
   }
 
   getPayment() {
