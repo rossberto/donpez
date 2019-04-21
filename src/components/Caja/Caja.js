@@ -13,8 +13,7 @@ export class Caja extends React.Component {
         {index:0, name: 'Pescado', price: 22, quantity: 0},
         {index:1, name: 'Camarón', price: 26, quantity: 0},
         {index:2, name: 'Bebidas', price: 12, quantity: 0}
-      ],
-      cashier: 'Cajero 0'
+      ]
     }
 
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -63,7 +62,7 @@ export class Caja extends React.Component {
 
   handlePurchase() {
     const date = new Date();
-    Donpez.purchase(date, this.state, this.calculateTotal()).then(jsonResponse => {
+    Donpez.purchase(this.props.token, date, this.state, this.calculateTotal()).then(jsonResponse => {
       window.print();
 
       this.state.items.map(item => {

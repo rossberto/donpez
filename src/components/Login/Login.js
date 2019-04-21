@@ -28,9 +28,9 @@ export class Login extends React.Component {
 
     Donpez.login(this.state.user, this.state.password).then(auth => {
       if (auth) {
+        console.log(auth);
         this.props.authorize(auth);
       } else {
-        console.log('aqui ando');
         alert("Usuario o contraseña incorrecto.");
         this.setState({
           user: '',
@@ -48,7 +48,7 @@ export class Login extends React.Component {
           <input onChange={this.handleChange} type="text" name="user" placeholder="Introduce Usuario" value={this.state.user}></input><br />
           Contraseña:<br />
           <input onChange={this.handleChange} type="password" name="password" placeholder="Introduce Contraseña" value={this.state.password}></input><br />
-          <input onClick={this.handleSubmit} className="submit-button" type="submit" value="Submit"></input>
+          <input onClick={this.handleSubmit} className="submit-button" type="submit" value="Entrar"></input>
         </form>
       </div>
     );

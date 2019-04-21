@@ -1,6 +1,35 @@
 const urlBase = "http://localhost:4001/api/";
 
 export const Donpez = {
+  addUser(token, newUser) {
+    const urlToFetch = urlBase + 'users/';
+    const bodyToFetch = JSON.stringify({user: newUser});
+    const headerToFetch = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token
+      },
+      body: bodyToFetch
+    };
+
+    return fetch(urlToFetch, headerToFetch).then(response => {
+      if (response) {
+        console.log(response);
+        return response.json();
+      } else {
+        console.log('There was no response');
+      }
+    }).then(jsonResponse => {
+      if (jsonResponse) {
+        console.log(jsonResponse);
+        return jsonResponse;
+      } else {
+        console.log('There was no jsonResponse');
+      }
+    });
+  },
+
   login(user, password) {
     const urlToFetch = urlBase + 'login/';
 
@@ -13,25 +42,22 @@ export const Donpez = {
 
     return fetch(urlToFetch, headerToFetch).then(response => {
       if (response.ok) {
-        console.log(response.ok);
         return response.json();
       }
     }).then(jsonResponse => {
       if (jsonResponse) {
-        console.log(jsonResponse);
         return jsonResponse;
       }
     });
   },
 
-  purchase(date, state, total) {
+  purchase(token, date, state, total) {
     const bodyToFetch = JSON.stringify({
       purchase: {
         date: date,
         tacosPescado: state.items[0].quantity,
         tacosCamaron: state.items[1].quantity,
         bebidas: state.items[2].quantity,
-        cashier: state.cashier,
         total: total
       }
     });
@@ -39,7 +65,8 @@ export const Donpez = {
     const headers = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: bodyToFetch
     }
@@ -54,6 +81,7 @@ export const Donpez = {
       }
     }).then(jsonResponse => {
       if (jsonResponse) {
+        console.log(jsonResponse);
         return jsonResponse;
       }
     });
