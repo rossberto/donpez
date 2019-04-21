@@ -31,7 +31,7 @@ export class AdminPage extends React.Component {
         return <Caja cashier={this.props.cashier} token={this.props.token} user-type="Administrador" />;
         break;
       case 'historial':
-        return <Historial />;
+        return <Historial token={this.props.token} />;
         break;
       case 'users':
         return <Users />;

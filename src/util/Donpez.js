@@ -113,10 +113,19 @@ export const Donpez = {
     });
   },
 
-  sales() {
+  sales(token) {
     const urlToFetch = urlBase + 'purchase/';
 
-    return fetch(urlToFetch).then(response => {
+    const headerToFetch = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    return fetch(urlToFetch, headerToFetch).then(response => {
+      console.log(response);
       return response.json();
     }).then(jsonResponse => {
       return jsonResponse.sales;

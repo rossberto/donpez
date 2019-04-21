@@ -53,7 +53,7 @@ export class Historial extends React.Component {
   handleButton(e) {
     // se piden datos nuevos al backend
     // then se calculan totales del display
-    Donpez.sales().then(sales => {
+    Donpez.sales(this.props.token).then(sales => {
       const totalSale = this.getTotals(sales);
       const date = new Date();
       this.setState({
