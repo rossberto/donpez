@@ -6,6 +6,8 @@ import {Login} from './components/Login/Login';
 import {AdminPage} from './components/AdminPage/AdminPage';
 import {CashierPage} from './components/CashierPage/CashierPage';
 
+import {Donpez} from './util/Donpez';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,26 +15,31 @@ class App extends Component {
     this.state = {
       token: '',
       cashier: '',
-      userType: ''
+      userType: '',
+      accessId: ''
     }
 
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.authorize = this.authorize.bind(this);
   }
 
   authorize(auth, user) {
-    console.log(auth);
     this.setState({
       token: auth.token,
       cashier: user,
-      userType: auth.access_type
+      userType: auth.access_type,
+      accessId: auth.id
     });
   }
 
   handleLogout() {
+    Donpez.logout(this.state.token, this.state.accessId);
     this.setState({
       token: '',
-      userType: ''
+      userType: '',
+      cashier: '',
+      accessId: ''
     });
   }
 
@@ -44,6 +51,13 @@ class App extends Component {
     } else if (this.state.userType === '') {
       return <Login authorize={this.authorize} />;
     }
+  }
+
+  componentDidMount() {
+      window.addEventListener("beforeunload", (ev) => {
+        ev.preventDefault();
+        return ev.returnValue = this.handleLogout();
+      });
   }
 
   render() {

@@ -9,7 +9,7 @@ export class AdminPage extends React.Component {
     super(props);
 
     this.state = {
-      view: 'users'
+      view: 'caja'
     }
 
     this.handleButton = this.handleButton.bind(this);

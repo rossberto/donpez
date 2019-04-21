@@ -51,6 +51,33 @@ export const Donpez = {
     });
   },
 
+  logout(token, accessId) {
+    const bodyToFetch = JSON.stringify({
+      accessId: accessId
+    });
+
+    const headerToFetch = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: bodyToFetch
+    };
+
+    const urlToFetch = urlBase + 'login/';
+
+    return fetch(urlToFetch, headerToFetch).then(response => {
+      if (response) {
+        return response.json();
+      }
+    }).then(jsonResponse => {
+      if (jsonResponse) {
+        return jsonResponse;
+      }
+    });
+  },
+
   purchase(token, date, state, total) {
     const bodyToFetch = JSON.stringify({
       purchase: {

@@ -63,9 +63,14 @@ export class Historial extends React.Component {
         updateTime: `${date.getHours()}:${date.getMinutes()}`
       });
     });
+  }
 
-    // se actualiza hora de ultima actualizacion
-
+  getAvgSale() {
+    if (this.state.sales.length === 0) {
+      return 0;
+    } else {
+      return this.state.total_sale.total / this.state.sales.length;
+    }
   }
 
   render() {
@@ -81,10 +86,12 @@ export class Historial extends React.Component {
         </div>
         <div className="flex-container-historial">
           <div className="total-sales">
-            <h1>Venta Total: $ {this.state.total_sale.total}</h1>
+            <h1>Venta Total: ${this.state.total_sale.total}</h1>
             <h2>Tacos de Pescado: {this.state.total_sale.tacosPescado}</h2>
             <h2>Tacos de Camaron: {this.state.total_sale.tacosCamaron}</h2>
             <h2>Bebidas: {this.state.total_sale.bebidas}</h2>
+            <h2>Transacciones: {this.state.sales.length}</h2>
+            <h2>Compra promedio: ${this.getAvgSale()}</h2>
             <button onClick={this.handleButton} className="nav-button" type="button" name="actualizar">Actualizar</button>
           </div>
           <div className="today-sales">
