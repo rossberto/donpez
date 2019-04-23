@@ -1,3 +1,8 @@
+input {
+  border-style: solid;
+  color: white;
+}
+
 .sales {
   text-align: center;
 }

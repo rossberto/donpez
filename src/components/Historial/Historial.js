@@ -54,13 +54,23 @@ export class Historial extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({interval: e.target.value + 'to'});
+    const range = this.state.interval;
+
+    if (e.target.name === 'start') {
+      const end = range.split('to')[1];
+      this.setState({interval: e.target.value + 'to' + end});
+    } else if (e.target.name === 'end') {
+      const start = range.split('to')[0];
+      this.setState({interval: start + 'to' + e.target.value})
+    }
+
   }
 
   handleButton(e) {
     console.log(this.state.interval);
     Donpez.sales(this.props.token, this.state.interval).then(sales => {
       const totalSale = this.getTotals(sales);
+      console.log(sales);
       const date = new Date();
       this.setState({
         sales: sales,
@@ -95,7 +105,10 @@ export class Historial extends React.Component {
       <div>
         <div className="sales">
           <h1>Detalle de ventas</h1>
-          <input onChange={this.handleChange} type="date" />
+          <h2>De:</h2>
+          <input onChange={this.handleChange} name="start" type="date" />
+          <h2>A:</h2>
+          <input onChange={this.handleChange} name="end" type="date" />
           <h1>{day} / {month + 1} / {year}</h1>
           <h2>Ultima actualizacion: {this.state.updateTime}</h2>
         </div>

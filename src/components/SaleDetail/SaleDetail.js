@@ -1,5 +1,13 @@
 import React from 'react';
 
+function getZeroNumber(number) {
+  if (number <10) {
+    return '0' + number;
+  } else {
+    return number;
+  }
+}
+
 export class SaleDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -13,10 +21,11 @@ export class SaleDetail extends React.Component {
   }
 
   getTime() {
-    const date = this.props.details.date;
-    console.log(date);
-    const hours = 'ohoi';
-    return '11:45 Hrs'
+    const date = new Date(this.props.details.date);
+    const minutes = getZeroNumber(date.getMinutes());
+    const seconds = getZeroNumber(date.getSeconds());
+
+    return date.getHours() + ':' + minutes + ':' + seconds;
   }
 
   render() {
