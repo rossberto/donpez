@@ -78,7 +78,8 @@ export const Donpez = {
     });
   },
 
-  purchase(token, date, state, total) {
+  purchase(token, state, total) {
+    const date = new Date();
     const bodyToFetch = JSON.stringify({
       purchase: {
         date: date,
@@ -88,6 +89,8 @@ export const Donpez = {
         total: total
       }
     });
+
+    console.log(bodyToFetch);
 
     const headers = {
       method: 'POST',
@@ -113,14 +116,15 @@ export const Donpez = {
     });
   },
 
-  sales(token) {
+  sales(token, range) {
     const urlToFetch = urlBase + 'purchase/';
 
     const headerToFetch = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        Range: range
       }
     }
 

@@ -18,11 +18,13 @@ export class Historial extends React.Component {
         bebidas: 0
       },
       lastUpdate: [16, 3, 19],
-      updateTime: '10:30 AM'
+      updateTime: '10:30 AM',
+      interval: '2019-04-22to'
     };
 
     this.handleButton = this.handleButton.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getTotals(sales) {
@@ -51,8 +53,13 @@ export class Historial extends React.Component {
     return totals;
   }
 
+  handleChange(e) {
+    this.setState({interval: e.target.value + 'to'});
+  }
+
   handleButton(e) {
-    Donpez.sales(this.props.token).then(sales => {
+    console.log(this.state.interval);
+    Donpez.sales(this.props.token, this.state.interval).then(sales => {
       const totalSale = this.getTotals(sales);
       const date = new Date();
       this.setState({
@@ -88,6 +95,7 @@ export class Historial extends React.Component {
       <div>
         <div className="sales">
           <h1>Detalle de ventas</h1>
+          <input onChange={this.handleChange} type="date" />
           <h1>{day} / {month + 1} / {year}</h1>
           <h2>Ultima actualizacion: {this.state.updateTime}</h2>
         </div>

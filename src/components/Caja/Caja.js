@@ -69,9 +69,9 @@ export class Caja extends React.Component {
   }
 
   handlePurchase() {
-    const date = new Date();
-    Donpez.purchase(this.props.token, date, this.state, this.calculateTotal()).then(jsonResponse => {
+    Donpez.purchase(this.props.token, this.state, this.calculateTotal()).then(jsonResponse => {
       this.setState({lastReceipt: jsonResponse.id});
+      console.log(jsonResponse);
       window.print();
 
       this.state.items.map(item => {

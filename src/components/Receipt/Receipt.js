@@ -33,13 +33,13 @@ export class Receipt extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td className="receipt-item">Tacos de pescado:</td>
+              <td className="receipt-item">T. pescado:</td>
               <td className="receipt-quantity">{purchaseInfo.items[0].quantity}</td>
               <td>${purchaseInfo.items[0].price}</td>
               <td>${totalPescado}</td>
             </tr>
             <tr>
-              <td className="receipt-item">Tacos de camarón:</td>
+              <td className="receipt-item">T. camarón:</td>
               <td className="receipt-quantity">{purchaseInfo.items[1].quantity}</td>
               <td>${purchaseInfo.items[1].price}</td>
               <td>${totalCamaron}</td>
