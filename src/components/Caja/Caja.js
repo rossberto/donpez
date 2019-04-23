@@ -16,7 +16,7 @@ export class Caja extends React.Component {
         {index:2, name: 'Bebidas', price: 12, quantity: 0}
       ],
       payment: 0,
-      lastReceipt: 0
+      sale: {}
     }
 
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -69,9 +69,17 @@ export class Caja extends React.Component {
   }
 
   handlePurchase() {
-    Donpez.purchase(this.props.token, this.state, this.calculateTotal()).then(jsonResponse => {
-      this.setState({lastReceipt: jsonResponse.id});
-      console.log(jsonResponse);
+    const items = {
+      tacosPescado: this.state.items[0].quantity,
+      tacosCamaron: this.state.items[1].quantity,
+      bebidas: this.state.items[2].quantity
+    };
+    const priceId = 2;
+
+    Donpez.purchase(this.props.token, items, priceId).then(sale => {
+      this.setState({sale: sale});
+
+      console.log(sale);
       window.print();
 
       this.state.items.map(item => {
@@ -81,6 +89,12 @@ export class Caja extends React.Component {
   }
 
   render() {
+    const prices = {
+      pescado: this.state.items[0].price,
+      camaron: this.state.items[1].price,
+      bebidas: this.state.items[2].price
+    };
+
     return (
       <div>
         <div className="flex-container-caja">
@@ -93,7 +107,7 @@ export class Caja extends React.Component {
             <TotalBox total={this.calculateTotal()} purchase={this.handlePurchase} payment={this.payment} />
           </div>
         </div>
-        <Receipt cashier={this.props.cashier} purchase_info={this.state} />
+        <Receipt cashier={this.props.cashier} sale={this.state.sale} payment={this.state.payment} prices={prices} />
       </div>
     );
   }

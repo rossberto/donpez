@@ -78,15 +78,15 @@ export const Donpez = {
     });
   },
 
-  purchase(token, state, total) {
+  purchase(token, items, priceId) {
     const date = new Date();
     const bodyToFetch = JSON.stringify({
       purchase: {
         date: date,
-        tacosPescado: state.items[0].quantity,
-        tacosCamaron: state.items[1].quantity,
-        bebidas: state.items[2].quantity,
-        total: total
+        tacosPescado: items.tacosPescado,
+        tacosCamaron: items.tacosCamaron,
+        bebidas: items.bebidas,
+        priceId: priceId
       }
     });
 

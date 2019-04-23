@@ -2,14 +2,30 @@ import React from 'react';
 import logo from './donpez.png';
 
 export class Receipt extends React.Component {
-  render() {
-    const purchaseInfo = this.props.purchase_info;
-    const totalPescado = purchaseInfo.items[0].quantity * purchaseInfo.items[0].price;
-    const totalCamaron = purchaseInfo.items[1].quantity * purchaseInfo.items[1].price;
-    const totalBebidas = purchaseInfo.items[2].quantity * purchaseInfo.items[2].price;
-    const total = totalPescado + totalCamaron + totalBebidas;
+  constructor(props) {
+    super(props);
+  }
 
-    const date = new Date();
+  obtainZeroNumber(number) {
+    if (number < 10) {
+      return '0' + number;
+    } else {
+      return number;
+    }
+  }
+
+  render() {
+    const sale = this.props.sale;
+    const d = new Date(sale.date);
+
+    const seconds = this.obtainZeroNumber(d.getSeconds());
+    const minutes = this.obtainZeroNumber(d.getMinutes());
+    const hours = this.obtainZeroNumber(d.getHours());
+
+    const payment = this.props.payment;
+    const totalPescado = sale.tacos_pescado * this.props.prices.pescado;
+    const totalCamaron = sale.tacos_camaron * this.props.prices.camaron;
+    const totalBebidas = sale.bebidas * this.props.prices.bebidas;
 
     return (
       <div id="receipt">
@@ -18,8 +34,8 @@ export class Receipt extends React.Component {
           <div>
             <p>Gracias por tu compra</p>
             <p>Cajero: {this.props.cashier}</p>
-            <p>{`${date}`.slice(0, -33)}</p>
-            <p>Número de Recibo: {purchaseInfo.lastReceipt}</p>
+            <p>{d.getDate()}/{d.getMonth()}/{d.getFullYear()} - {hours}:{minutes}:{seconds}</p>
+            <p>Número de Recibo: {sale.id}</p>
           </div>
         </div>
         <table className="receipt-table">
@@ -34,39 +50,39 @@ export class Receipt extends React.Component {
           <tbody>
             <tr>
               <td className="receipt-item">T. pescado:</td>
-              <td className="receipt-quantity">{purchaseInfo.items[0].quantity}</td>
-              <td>${purchaseInfo.items[0].price}</td>
+              <td className="receipt-quantity">{sale.tacos_pescado}</td>
+              <td>${this.props.prices.pescado}</td>
               <td>${totalPescado}</td>
             </tr>
             <tr>
               <td className="receipt-item">T. camarón:</td>
-              <td className="receipt-quantity">{purchaseInfo.items[1].quantity}</td>
-              <td>${purchaseInfo.items[1].price}</td>
+              <td className="receipt-quantity">{sale.tacos_camaron}</td>
+              <td>${this.props.prices.camaron}</td>
               <td>${totalCamaron}</td>
             </tr>
             <tr>
               <td className="receipt-item">Bebidas:</td>
-              <td className="receipt-quantity">{purchaseInfo.items[2].quantity}</td>
-              <td>${purchaseInfo.items[2].price}</td>
+              <td className="receipt-quantity">{sale.bebidas}</td>
+              <td>${this.props.prices.bebidas}</td>
               <td>${totalBebidas}</td>
             </tr>
             <tr>
               <td> </td>
               <td> </td>
               <td className="receipt-total">Total:</td>
-              <td className="receipt-total">${total}</td>
+              <td className="receipt-total">${sale.total}</td>
             </tr>
             <tr>
               <td> </td>
               <td> </td>
               <td className="receipt-total">Entrega:</td>
-              <td className="receipt-total">${purchaseInfo.payment}</td>
+              <td className="receipt-total">${payment}</td>
             </tr>
             <tr>
               <td> </td>
               <td> </td>
               <td className="receipt-total">Cambio:</td>
-              <td className="receipt-total">${purchaseInfo.payment - total}</td>
+              <td className="receipt-total">${payment - sale.total}</td>
             </tr>
           </tbody>
         </table>
