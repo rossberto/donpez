@@ -18,7 +18,7 @@ export class Historial extends React.Component {
         bebidas: 0
       },
       lastUpdate: [16, 3, 19],
-      updateTime: '10:30 AM',
+      updateTime: '',
       interval: '2019-04-22to'
     };
 
@@ -76,7 +76,7 @@ export class Historial extends React.Component {
         sales: sales,
         total_sale: totalSale,
         lastUpdate: [date.getDate(), date.getMonth(), date.getFullYear()],
-        updateTime: `${date.getHours()}:${date.getMinutes()}`
+        updateTime: `${date.getHours()}:${date.getMinutes()} Hrs`
       });
     });
   }
@@ -109,7 +109,6 @@ export class Historial extends React.Component {
           <input onChange={this.handleChange} name="start" type="date" />
           <h2>A:</h2>
           <input onChange={this.handleChange} name="end" type="date" />
-          <h1>{day} / {month + 1} / {year}</h1>
           <h2>Ultima actualizacion: {this.state.updateTime}</h2>
         </div>
         <div className="flex-container-historial">

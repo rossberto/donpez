@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import {Donpez} from '../../util/Donpez';
+import logo from '../Receipt/donpez.png';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -41,14 +42,19 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div className="login-div">
-        <form className="login-form" method='post' action="http://localhost:4001/api/auth/">
-          Usuario:<br />
-          <input onChange={this.handleChange} type="text" name="user" placeholder="Introduce Usuario" value={this.state.user}></input><br />
-          Contraseña:<br />
-          <input onChange={this.handleChange} type="password" name="password" placeholder="Introduce Contraseña" value={this.state.password}></input><br />
-          <input onClick={this.handleSubmit} className="submit-button" type="submit" value="Entrar"></input>
-        </form>
+      <div>
+        <h1></h1><br />
+        <h1></h1><br />
+        <div className="login-div">
+          <img className="login-img" src={logo} alt="donpez-logo" />
+          <form className="login-form" method='post' action="http://localhost:4001/api/auth/">
+            Usuario:<br />
+            <input onChange={this.handleChange} type="text" name="user" placeholder="Introduce Usuario" value={this.state.user}></input><br />
+            Contraseña:<br />
+            <input onChange={this.handleChange} type="password" name="password" placeholder="Introduce Contraseña" value={this.state.password}></input><br />
+            <input onClick={this.handleSubmit} className="submit-button" type="submit" value="Entrar"></input>
+          </form>
+        </div>
       </div>
     );
   }

@@ -11,9 +11,9 @@ export class Caja extends React.Component {
     super(props);
     this.state = {
       items: [
-        {index:0, name: 'Pescado', price: 22, quantity: 0},
-        {index:1, name: 'Camarón', price: 26, quantity: 0},
-        {index:2, name: 'Bebidas', price: 12, quantity: 0}
+        {index:0, name: 'Pescado', price: 15, quantity: 0},
+        {index:1, name: 'Camarón', price: 20, quantity: 0},
+        {index:2, name: 'Bebidas', price: 10, quantity: 0}
       ],
       payment: 0,
       sale: {}
@@ -74,7 +74,7 @@ export class Caja extends React.Component {
       tacosCamaron: this.state.items[1].quantity,
       bebidas: this.state.items[2].quantity
     };
-    const priceId = 2;
+    const priceId = 3;
 
     Donpez.purchase(this.props.token, items, priceId).then(sale => {
       this.setState({sale: sale});

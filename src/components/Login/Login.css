@@ -1,3 +1,6 @@
+img {
+  height: 230px;
+}
 .login-div {
   display: flex;
   justify-content: center;
