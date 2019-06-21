@@ -13,7 +13,8 @@ export class Caja extends React.Component {
       items: [
         {index:0, name: 'Pescado', price: 15, quantity: 0},
         {index:1, name: 'Camarón', price: 20, quantity: 0},
-        {index:2, name: 'Bebidas', price: 10, quantity: 0}
+        {index:2, name: 'Bebidas', price: 10, quantity: 0},
+        {index:3, name: 'Jugos', price: 8, quantity: 0}
       ],
       payment: 0,
       sale: {}
@@ -72,7 +73,8 @@ export class Caja extends React.Component {
     const items = {
       tacosPescado: this.state.items[0].quantity,
       tacosCamaron: this.state.items[1].quantity,
-      bebidas: this.state.items[2].quantity
+      bebidas: this.state.items[2].quantity,
+      jugos: this.state.items[3].quantity
     };
     const priceId = 3;
 
@@ -92,7 +94,8 @@ export class Caja extends React.Component {
     const prices = {
       pescado: this.state.items[0].price,
       camaron: this.state.items[1].price,
-      bebidas: this.state.items[2].price
+      bebidas: this.state.items[2].price,
+      jugos: this.state.items[3].price,
     };
 
     return (

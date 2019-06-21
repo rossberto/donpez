@@ -26,6 +26,7 @@ export class Receipt extends React.Component {
     const totalPescado = sale.tacos_pescado * this.props.prices.pescado;
     const totalCamaron = sale.tacos_camaron * this.props.prices.camaron;
     const totalBebidas = sale.bebidas * this.props.prices.bebidas;
+    const totalJugos = sale.jugos * this.props.prices.jugos;
 
     return (
       <div id="receipt">
@@ -65,6 +66,12 @@ export class Receipt extends React.Component {
               <td className="receipt-quantity">{sale.bebidas}</td>
               <td>${this.props.prices.bebidas}</td>
               <td>${totalBebidas}</td>
+            </tr>
+            <tr>
+              <td className="receipt-item">Jugos:</td>
+              <td className="receipt-quantity">{sale.jugos}</td>
+              <td>${this.props.prices.jugos}</td>
+              <td>${totalJugos}</td>
             </tr>
             <tr>
               <td> </td>

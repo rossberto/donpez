@@ -15,7 +15,8 @@ export class Historial extends React.Component {
         total: 0,
         tacosPescado: 0,
         tacosCamaron: 0,
-        bebidas: 0
+        bebidas: 0,
+        jugos: 0
       },
       lastUpdate: [16, 3, 19],
       updateTime: '',
@@ -40,6 +41,10 @@ export class Historial extends React.Component {
       return acc + sale.bebidas;
     }, 0);
 
+    const totalJugos = sales.reduce( (acc, sale) => {
+      return acc + sale.jugos;
+    }, 0);
+
     const total = sales.reduce( (acc, sale) => {
       return acc + sale.total;
     }, 0);
@@ -48,6 +53,7 @@ export class Historial extends React.Component {
       tacosPescado: totalPescado,
       tacosCamaron: totalCamaron,
       bebidas: totalBebidas,
+      jugos: totalJugos,
       total: total
     }
     return totals;
@@ -117,6 +123,7 @@ export class Historial extends React.Component {
             <h2>Tacos de Pescado: {this.state.total_sale.tacosPescado}</h2>
             <h2>Tacos de Camaron: {this.state.total_sale.tacosCamaron}</h2>
             <h2>Bebidas: {this.state.total_sale.bebidas}</h2>
+            <h2>Jugos: {this.state.total_sale.jugos}</h2>
             <h2>Transacciones: {this.state.sales.length}</h2>
             <h2>Compra promedio: ${this.getAvgSale()}</h2>
             <button onClick={this.handleButton} className="nav-button" type="button" name="actualizar">Actualizar</button>

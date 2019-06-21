@@ -86,6 +86,7 @@ export const Donpez = {
         tacosPescado: items.tacosPescado,
         tacosCamaron: items.tacosCamaron,
         bebidas: items.bebidas,
+        jugos: items.jugos,
         priceId: priceId
       }
     });

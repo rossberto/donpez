@@ -22,7 +22,7 @@ nav {
 .main-pad {
   background-color: white;
   color: black;
-  height: 400px;
+  height: 500px;
   margin: 5px
 }
 
@@ -31,7 +31,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   margin: 20px;
 }
 
@@ -88,8 +88,10 @@ nav {
 }
 
 .cantidad {
-  max-width: 100px;
+  max-width: 80px;
   font-size: 54px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-weight: bold;
   border: none;
   text-align: center;

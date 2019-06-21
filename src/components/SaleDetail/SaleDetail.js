@@ -37,6 +37,7 @@ export class SaleDetail extends React.Component {
         <h3>Tacos de pescado: {this.props.details.tacos_pescado}</h3>
         <h3>Tacos de camaron: {this.props.details.tacos_camaron}</h3>
         <h3>Bebidas: {this.props.details.bebidas}</h3>
+        <h3>Jugos: {this.props.details.jugos}</h3>
         <h3>Total pagado: ${this.props.details.total}</h3>
       </div>
     );
